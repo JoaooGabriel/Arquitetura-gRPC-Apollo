@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+message Company {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+    string cnpj = 5;
+  }
+  
+  message GetCompanyByIdRequest {
+    string id = 1;
+  }
+  
+  message RegisterCompanyRequest {
+    Company company = 1;
+  }
+  
+  message LoginCompanyRequest {
+    Company company = 1;
+  }
+  
+  message LoginResponse {
+    string token = 1;
+  }
+  
+  message CompanyResponse {
+    Company company = 1;
+    string error = 2;
+  }
+  
+  message AuthenticationRequest {
+    string token = 1;
+  }
+  
+  
+  service CompanyService {
+    rpc getCompanyById(GetCompanyByIdRequest) returns (CompanyResponse);
+    rpc registerCompany(RegisterCompanyRequest) returns (CompanyResponse);
+    rpc loginCompany(LoginCompanyRequest) returns (LoginResponse);
+  }
+

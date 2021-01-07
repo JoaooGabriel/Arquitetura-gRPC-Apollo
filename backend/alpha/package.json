@@ -1,0 +1,22 @@
+{
+  "name": "alpha",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "docker_db": "docker run --name postgres -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -e POSTGRES_DB=grpc -p 5432:5432 -d postgres",
+    "docker_table": "cd src && sequelize-cli db:migrate",
+    "dev": "nodemon src/index.js",
+    "loader": "nodemon src/loader.js",
+    "newService": "cd src/services && mkdir %serviceName% && cd %serviceName% && mkdir implementation && mkdir pb && copy NUL> echo %serviceName%Methods.js && cd pb && copy NUL> messages.proto"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.5",
+    "grpc": "^1.24.4",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.6",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}

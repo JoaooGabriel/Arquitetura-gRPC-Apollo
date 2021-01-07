@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+message Prova {
+    string id = 1;
+    string id_processo = 2;
+    string qtdQuestoes = 3;
+}
+
+message ProvaStarted {
+    string id = 1;
+    string id_prova = 2;
+    string id_usuario = 3;
+    string qtdAcertos = 4;
+    bool iniciada = 5; 
+}
+
+message createProvaRequest {
+    Prova prova = 1;
+}
+
+message initProvaRequest {
+    ProvaStarted provaStart = 1;
+}
+
+message ProvaResponse {
+    bool requestIsSucess = 1;
+}
+
+service ProvaService {
+    rpc createProva(createProvaRequest) returns (ProvaResponse);
+    rpc startProva(initProvaRequest) returns (ProvaResponse);
+}
